@@ -13,6 +13,16 @@ RUN apk update \
     && curl http://apache.01link.hk/incubator/druid/$DRUID_VERSION-incubating/apache-druid-$DRUID_VERSION-incubating-bin.tar.gz | tar -xzf - -C /opt \
     && ln -s /opt/apache-druid-$DRUID_VERSION-incubating /opt/druid
 
+WORKDIR /opt/druid
+
+RUN java \
+    -cp "lib/*" \
+    -Ddruid.extensions.directory="extensions" \
+    -Ddruid.extensions.hadoopDependenciesDir="hadoop-dependencies" \
+    org.apache.druid.cli.Main tools pull-deps \
+    --no-default-hadoop \
+    -c "org.apache.druid.extensions.contrib:kafka-emitter:0.14.2-incubating"
+
 COPY conf /opt/druid/conf
 COPY start-druid.sh /start-druid.sh
 CMD /start-druid.sh $DRUID_MODULE

@@ -7,5 +7,4 @@ if [ "${1:0:1}" = '-' ]; then
     exit 1
 fi
 
-/opt/druid/bin/$1.sh start
-/opt/druid/bin/$1.sh status
+java ${JAVA_OPTS} -cp /opt/druid/conf/druid/_common:/opt/druid/conf/druid/$1:/opt/druid/lib/* org.apache.druid.cli.Main server $@
