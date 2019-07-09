@@ -1,4 +1,4 @@
-# VERSION 0.12.3-2
+# VERSION 0.14.2-2
 FROM anapsix/alpine-java:8_server-jre_unlimited
 
 MAINTAINER TalkWithKeyboard <songwei@ruguoapp.com>
@@ -11,7 +11,7 @@ RUN apk update \
     && apk add --no-cache bash curl \
     && mkdir /tmp/druid \
     && curl http://apache.01link.hk/incubator/druid/$DRUID_VERSION-incubating/apache-druid-$DRUID_VERSION-incubating-bin.tar.gz | tar -xzf - -C /opt \
-    && ln -s /opt/apache-druid-$DRUID_VERSION-incubating-bin /opt/druid
+    && ln -s /opt/apache-druid-$DRUID_VERSION-incubating /opt/druid
 
 COPY conf /opt/druid/conf
 COPY start-druid.sh /start-druid.sh
