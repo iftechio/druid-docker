@@ -15,5 +15,4 @@ RUN apk update \
 
 COPY conf /opt/druid/conf
 COPY start-druid.sh /start-druid.sh
-
-ENTRYPOINT ["/start-druid.sh $DRUID_MODULE"]
+CMD /start-druid.sh $DRUID_MODULE
