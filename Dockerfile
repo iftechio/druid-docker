@@ -10,7 +10,7 @@ ENV DRUID_MODULE -
 RUN apk update \
     && apk add --no-cache bash curl \
     && mkdir /tmp/druid \
-    && curl http://apache.01link.hk/incubator/druid/$DRUID_VERSION-incubating/apache-druid-$DRUID_VERSION-incubating-bin.tar.gz | tar -xzf - -C /opt \
+    && curl http://apache.website-solution.net/incubator/druid/$DRUID_VERSION-incubating/apache-druid-$DRUID_VERSION-incubating-bin.tar.gz | tar -xzf - -C /opt \
     && ln -s /opt/apache-druid-$DRUID_VERSION-incubating /opt/druid
 
 WORKDIR /opt/druid
